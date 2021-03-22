@@ -98,7 +98,7 @@ Click on image to view fullscreen and zoom
 - Prerequisites
   - Node
   - MySQL (or Postgres / Sqlite / MSSQL)
-- Clone repo `git clone git@github.com:atulmy/crate.git crate`
+- Clone repo `git clone git@github.com:philmccarthy/Crate.git crate`
 - Switch to `code` directory `cd code`
 - Configurations
   - Modify `/api/src/config/database.json` for database credentials
