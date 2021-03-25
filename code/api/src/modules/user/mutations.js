@@ -27,6 +27,26 @@ export const userSignup = {
   resolve: create
 }
 
+// Add style
+export const userStyle = {
+  type: UserType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt
+    },
+    style: {
+      name: 'style',
+      type: GraphQLString
+    }
+  },
+  resolve: async (obj, { input: { id, style } }) => {
+    const user = await db.user.findById(id)
+    user.set('style', style)
+    return user.save()
+  }
+}
+
 // Remove
 export const userRemove = {
   type: UserType,
