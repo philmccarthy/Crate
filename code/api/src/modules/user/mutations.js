@@ -3,7 +3,7 @@ import { GraphQLString, GraphQLInt } from 'graphql'
 
 // App Imports
 import { UserType } from './types'
-import { create, remove } from './resolvers'
+import { create, remove, update } from './resolvers'
 
 // Create
 export const userSignup = {
@@ -40,11 +40,12 @@ export const userStyle = {
       type: GraphQLString
     }
   },
-  resolve: async (obj, { input: { id, style } }) => {
-    const user = await db.user.findById(id)
-    user.set('style', style)
-    return user.save()
-  }
+  resolve: update
+  // async (obj, { input: { id, style } }) => {
+  //   const user = await db.user.findById(id)
+  //   user.set('style', style)
+  //   return user.save()
+  // }
 }
 
 // Remove
