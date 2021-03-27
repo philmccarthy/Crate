@@ -27,7 +27,8 @@ class Item extends PureComponent {
       isLoading: false
     }
   }
-
+  
+  //add subscription on click-- do we need to move this to display after the survey?
   onClickSubscribe = (crateId) => {
     this.setState({
       isLoading: true
