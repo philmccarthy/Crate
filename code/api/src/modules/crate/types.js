@@ -1,3 +1,5 @@
+//Indicates types
+
 // Imports
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
