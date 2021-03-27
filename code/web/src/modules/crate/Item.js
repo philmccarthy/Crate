@@ -43,6 +43,8 @@ class Item extends PureComponent {
           this.props.messageShow('Subscribed successfully.')
 
           this.props.history.push(userRoutes.subscriptions.path)
+          //on subscribe click -- creates new crate id, adds the sub to the users subs, changes route path to then render the subscriptions page. This is where we will need some conditional logic to check if style survey has been completed. if not send to survey path, rather than sub path
+          //may also need to grab gender from chosen subscription to determine which survey to render
         }
       })
       .catch(error => {
