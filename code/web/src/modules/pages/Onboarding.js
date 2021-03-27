@@ -13,6 +13,8 @@ import { textLevel1 } from '../../ui/common/shadows'
 import { APP_URL } from '../../setup/config/env'
 
 // Component
+
+//Onboarding component needs to be refactored for survey options 
 class Onboarding extends PureComponent {
 
   constructor(props) {
