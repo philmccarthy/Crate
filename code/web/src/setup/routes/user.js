@@ -28,3 +28,5 @@ export default {
     auth: true
   }
 }
+
+//Will add a path here for the user/style-survey to render the StyleSurvey component 
