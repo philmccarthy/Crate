@@ -1,3 +1,6 @@
+//uses Sequelize-- JS library to manage SQL database
+//Object-Relational Mapper-- maps object syntax into database schemas
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
