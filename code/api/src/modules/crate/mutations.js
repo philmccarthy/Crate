@@ -1,3 +1,5 @@
+//mutations in the data through GraphQL
+
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 
