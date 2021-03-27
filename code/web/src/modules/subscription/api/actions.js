@@ -55,6 +55,9 @@ export function getList(isLoading = true) {
 
 
 // Get list of subscriptions by user
+
+//This is what is called when the user has subscribed to a new box... will need to redirect this for the style survey.
+
 export function getListByUser(isLoading = true) {
   return dispatch => {
     dispatch({
