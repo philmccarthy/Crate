@@ -35,6 +35,8 @@ class Login extends Component {
       }
     }
 
+    //Will need to add style preference to user state... here?
+
     // Function bindings
   }
 

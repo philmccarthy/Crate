@@ -11,6 +11,8 @@ export const userInitialState = {
 }
 
 // State
+
+//These are the redux reducers. This is where the redux determines which part of the user state to adjust/return
 export default (state = userInitialState, action) => {
   switch (action.type) {
     case SET_USER:
@@ -19,6 +21,8 @@ export default (state = userInitialState, action) => {
         isAuthenticated: !isEmpty(action.user),
         details: action.user,
       }
+      //Likely need to add a SET_STYLE method to add the user styles to the details section -- or further expand initial state
+      //SET_STYLE will be dispatched when user submits their style survey. 
 
     case LOGIN_REQUEST:
       return {

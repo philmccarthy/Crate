@@ -14,6 +14,8 @@ export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
 
+//Action creators to trigger/dispatch the reducer, likely only SetUser is relevant for survey adjustments.
+
 // Set a user after login or using localStorage token
 export function setUser(token, user) {
   if (token) {
