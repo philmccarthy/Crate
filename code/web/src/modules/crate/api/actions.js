@@ -1,5 +1,5 @@
 // Imports
-import axios from 'axios'
+import axios from 'axios'//sends asynch HTTP requests to REST endpoints, perform CRUD operations
 import { query, mutation } from 'gql-query-builder'
 
 // App Imports
