@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet'//takes plain HTML tags and outputs plain HTML tags
 
 // UI Imports
 import { Grid, GridCell } from '../../../ui/grid'
@@ -14,6 +14,8 @@ import Loading from '../../common/Loading'
 import EmptyMessage from '../../common/EmptyMessage'
 import AdminMenu from '../common/Menu'
 
+
+//show current subscriptions
 // Component
 class List extends PureComponent {
 
