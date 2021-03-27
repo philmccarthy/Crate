@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     Subscription.belongsTo(models.User)
     Subscription.belongsTo(models.Crate)
   }
-
+  
+  //Subscription can be found by userId or crateId
   return Subscription
 }

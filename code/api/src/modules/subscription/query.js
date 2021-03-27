@@ -1,3 +1,4 @@
+//queries for GraphQL searches to find 
 // Imports
 import { GraphQLInt, GraphQLList } from 'graphql'
 

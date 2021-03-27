@@ -1,3 +1,5 @@
+//Includes functions to implement GraphQL queries?
+
 // App Imports
 import params from '../../config/params'
 import models from '../../setup/models'
