@@ -117,3 +117,5 @@ export function getGenders() {
     }))
   }
 }
+
+// Add a function to addStyle to a user through an API call to the backend
