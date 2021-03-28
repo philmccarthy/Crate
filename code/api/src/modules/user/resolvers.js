@@ -77,3 +77,5 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// Add an `updateUser` function, making use of Sequelize ORM syntax

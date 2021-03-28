@@ -27,6 +27,7 @@ export const userSignup = {
   resolve: create
 }
 
+
 // Remove
 export const userRemove = {
   type: UserType,
@@ -38,3 +39,6 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// Add a GraphQL mutation 'addStyle' that the frontend will call to add
+// a style to a user record in the backend database

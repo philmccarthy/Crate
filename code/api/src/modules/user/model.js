@@ -17,6 +17,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
+  // Add style to the above user model for GraphQL purposes
+
   User.associate = function(models) {
     User.hasMany(models.Subscription)
   }
