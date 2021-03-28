@@ -38,3 +38,5 @@ export const userRemove = {
   },
   resolve: remove
 }
+
+// Add userStyle mutation to edit the style.

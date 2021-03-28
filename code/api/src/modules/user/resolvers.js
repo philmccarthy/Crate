@@ -77,3 +77,5 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
+
+// add updateStyle to update the style of a user to the passed in string.
