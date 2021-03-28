@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
     role: {
       type: DataTypes.TEXT
     }
+    // going to add a user attribute here for their style. Also have to do a migration afterwards. That happens elsewhere, but that file does not exist yet, so I am noting it here.
   })
 
   User.associate = function(models) {
