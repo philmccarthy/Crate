@@ -47,6 +47,8 @@ class List extends PureComponent {
         </Grid>
 
         {/* Crate list */}
+        {/* This is where the subscription crates live that render most of what we'll be concerned with
+        Eventually we will probably use these same UI components to create the style survey*/}
         <Grid>
           <GridCell>
             {

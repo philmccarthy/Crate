@@ -1,3 +1,7 @@
+//This file is where we're handling our state changes for any relevant
+//subscription information. There is an These are our subscription
+//reducers that are telling state how to change based on the action type.
+
 // Imports
 
 // App Imports
@@ -23,8 +27,11 @@ const subscriptionsInitialState = {
 }
 
 // State
+//Subscription reducers
 export const subscriptions = (state = subscriptionsInitialState, action) => {
   switch (action.type) {
+    //separate state changes for each part of the request
+    //intial fetch
     case SUBSCRIPTIONS_GET_LIST_REQUEST:
       return {
         ...state,
@@ -32,6 +39,7 @@ export const subscriptions = (state = subscriptionsInitialState, action) => {
         error: null
       }
 
+    //how to handle response
     case SUBSCRIPTIONS_GET_LIST_RESPONSE:
       return {
         ...state,
@@ -40,6 +48,7 @@ export const subscriptions = (state = subscriptionsInitialState, action) => {
         list: action.list
       }
 
+    //how to handle error
     case SUBSCRIPTIONS_GET_LIST_FAILURE:
       return {
         ...state,

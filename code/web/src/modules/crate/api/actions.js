@@ -1,3 +1,17 @@
+/*
+It looks like the basic Idea is to structure the requests as actions.
+When redux dispatches the action there is an asnychronous network request
+being made to the back end that resolves differently depending on the outcome
+of the promise resolution. This means one action can dispatch multiple things.
+First the initial 'isLoading' dispatch is sent so the app knows the request
+is processing and can handle relevant DOM updates, then the resolution of that
+promise changes state again.
+
+We will have to write some actions for getting the user's survey status, whether
+that has been filled out or not and what the results are. Then write some dispatch
+functions to update the store so we can access that information later to validate their
+subscriptions with whether or not they need to fill out the survey 
+*/
 // Imports
 import axios from 'axios'
 import { query, mutation } from 'gql-query-builder'
@@ -17,6 +31,8 @@ export const CRATES_GET_FAILURE = 'CRATES/GET_FAILURE'
 
 // Get list of crates
 export function getList(orderBy = 'DESC', isLoading = true) {
+
+  //Initial dispatch
   return dispatch => {
     dispatch({
       type: CRATES_GET_LIST_REQUEST,
@@ -24,6 +40,7 @@ export function getList(orderBy = 'DESC', isLoading = true) {
       isLoading
     })
 
+    //Follow up depending on promise result
     return axios.post(routeApi, query({
       operation: 'crates',
       variables: { orderBy },
@@ -34,7 +51,9 @@ export function getList(orderBy = 'DESC', isLoading = true) {
           dispatch({
             type: CRATES_GET_LIST_RESPONSE,
             error: null,
+            //is loading gets set to false once the response returns
             isLoading: false,
+            //data comes from the response since we are querying crates
             list: response.data.data.crates
           })
         } else {

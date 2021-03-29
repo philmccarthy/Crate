@@ -20,6 +20,8 @@ const cratesInitialState = {
 }
 
 // State
+//once our promises are resolved the stage of the request (response, failure, request)
+//is sent here to be reduced into state depening on the stage of request and the outcome
 export const crates = (state = cratesInitialState, action) => {
   switch (action.type) {
     case CRATES_GET_LIST_REQUEST:
@@ -49,6 +51,9 @@ export const crates = (state = cratesInitialState, action) => {
   }
 }
 
+
+// Similar pattern but separate case for all crates or a single crate. Essentially
+// the same outcome, just pertains to the endpoint or table we're trying to hit
 // Single crate
 
 // Initial State
