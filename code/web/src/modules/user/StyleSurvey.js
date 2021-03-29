@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -18,7 +18,8 @@ import { H3 } from '../../ui/typography'
 import userRoutes from '../../setup/routes/user'
 import { surveyData } from './styleSurveyData'
 
-class StyleSurvey extends PureComponent {
+
+class StyleSurvey extends Component {
   constructor(props) {
     super(props)
 
@@ -58,7 +59,7 @@ class StyleSurvey extends PureComponent {
       this.props.history.push(userRoutes.subscriptions.path)
     } else {
       this.setState(prevState => ({ selections: {...prevState.selections, [this.state.currentSelection]: (prevState.selections[this.state.currentSelection] + 1)}}))
-      this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1)}))
+      this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1), currentSelection: '' }))
       this.determineResult()
     }
   }
@@ -83,16 +84,16 @@ class StyleSurvey extends PureComponent {
             // this.state.isLoading
             //   ? <Loading/>
             //   :
-            this.state.surveyCounter <= 5 ? 
+            this.state.surveyCounter <= 5 ?
               questionSet.map((choice, index) => (
                 <div key={index} style={{ margin: '1em', float: 'left' }}>
                     <Card style={{ width: '18em', backgroundColor: white }}>
                       <div style={{ width: '100%', textAlign: 'center' }}>
                       <img src={choice.src} alt={choice.alt} style={{ width: '80%', alignSelf: 'center' }}/>
                       </div>
-                      
+
                       <div style={{ padding: '1em 1.2em' }}>
-                    
+
                         <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}>
                           <Button
                             theme="primary"
@@ -133,4 +134,11 @@ class StyleSurvey extends PureComponent {
   }
 }
 
-export default StyleSurvey;
+//Component State
+function profileState(state) {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(profileState)(StyleSurvey)
