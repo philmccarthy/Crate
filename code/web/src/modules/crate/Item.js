@@ -29,6 +29,14 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
+    /*
+    if (!user.survey) {
+      this.props.history.push(userRoutes.survey.path)
+      return
+    }
+    
+    */
+
     this.setState({
       isLoading: true
     })
