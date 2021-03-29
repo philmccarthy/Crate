@@ -29,7 +29,7 @@ export default {
     auth: true
   },
 
-  StyleSurvey: {
+  styleSurvey: {
     path: '/user/style-survey',
     component: StyleSurvey,
     auth: true
