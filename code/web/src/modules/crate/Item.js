@@ -34,7 +34,7 @@ class Item extends PureComponent {
       this.props.history.push(userRoutes.survey.path)
       return
     }
-    
+
     */
 
     this.setState({
@@ -50,7 +50,9 @@ class Item extends PureComponent {
         } else {
           this.props.messageShow('Subscribed successfully.')
 
-          this.props.history.push(userRoutes.subscriptions.path)
+          // this.props.history.push(userRoutes.subscriptions.path)
+          this.props.history.push(userRoutes.StyleSurvey.path)
+
         }
       })
       .catch(error => {
