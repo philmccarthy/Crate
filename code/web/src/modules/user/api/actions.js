@@ -32,7 +32,7 @@ export function login(userCredentials, isLoading = true) {
       type: LOGIN_REQUEST,
       isLoading
     })
-
+// This function logs in a user using a GraphQL userLogin query, and stores info using Redux
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
