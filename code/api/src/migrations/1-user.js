@@ -1,3 +1,5 @@
+// We will create a migration here to add style to the user table
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {

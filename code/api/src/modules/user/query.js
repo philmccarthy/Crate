@@ -1,3 +1,5 @@
+// We need to update this to account for style
+
 // Imports
 import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 
@@ -47,3 +49,5 @@ export const userGenders = {
   type: new GraphQLList(UserGenderType),
   resolve: getGenders
 }
+
+// We need to add a query to update user style
