@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const ADD_USER_STYLE = 'AUTH/ADD_USER_STYLE'
 
 // Actions
 
@@ -118,10 +119,16 @@ export function getGenders() {
 }
 
 export function setUserStyle(userDetails) {
-  console.log(userDetails, 'got to the post')
+  dispatch => {
+    dispatch({
+      type: 'ADD_USER_STYLE',
+      user: userDetails
+    })
+  }
   return axios.post(routeApi, mutation({
     operation: 'userStyle',
     variables: userDetails,
     fields: ['id', 'style']
   }))
+
 }

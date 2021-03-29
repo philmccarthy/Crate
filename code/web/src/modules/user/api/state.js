@@ -1,18 +1,29 @@
 // App Imports
 import { isEmpty } from '../../../setup/helpers'
-import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from './actions'
+import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT, ADD_USER_STYLE } from './actions'
 
 // Initial State
 export const userInitialState = {
   error: null,
   isLoading: false,
   isAuthenticated: false,
-  details: null
+  details: null,
 }
 
 // State
 export default (state = userInitialState, action) => {
+  console.log(action)
   switch (action.type) {
+    case 'ADD_USER_STYLE':
+      console.log('user style added')
+      return {
+        ...state,
+        details: {
+          ...state.details,
+          style: action.user.style
+        }
+      }
+
     case SET_USER:
       return {
         ...state,
