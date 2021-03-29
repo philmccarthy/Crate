@@ -17,6 +17,7 @@ import { H3 } from '../../ui/typography'
 // App Imports
 import userRoutes from '../../setup/routes/user'
 import { surveyData } from './styleSurveyData'
+import { setUserStyle } from './api/actions.js'
 
 
 class StyleSurvey extends Component {
@@ -37,7 +38,7 @@ class StyleSurvey extends Component {
         raver: 0
       }
     }
-
+    this.onClickConfirmSubscription = this.onClickConfirmSubscription.bind(this)
     this.onSelection = this.onSelection.bind(this)
   }
   determineResult = () => {
@@ -62,6 +63,15 @@ class StyleSurvey extends Component {
       this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1), currentSelection: '' }))
       this.determineResult()
     }
+  }
+
+  onClickConfirmSubscription = () => {
+    console.log('ran', this.props.user, this.state.result)
+    const newUserDetails = {
+      'id': this.props.user.details.id,
+      'style': this.state.result
+    }
+    setUserStyle(newUserDetails)
   }
 
   render() {
@@ -114,7 +124,7 @@ class StyleSurvey extends Component {
               <p>Your style is {this.state.result}</p>
               <Button
                 theme="primary"
-                onClick={this.onClickSubmit.bind(this)}
+                onClick={this.onClickConfirmSubscription}
                 type="button"
                 >Confirm Subscription</Button>
               </>
@@ -141,4 +151,4 @@ function profileState(state) {
   }
 }
 
-export default connect(profileState)(StyleSurvey)
+export default connect(profileState, { setUserStyle })(StyleSurvey)

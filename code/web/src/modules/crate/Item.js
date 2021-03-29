@@ -29,34 +29,33 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
-    console.log(this.props.user.details.style)
     if (this.props.user.details.style !== null) {
-        this.props.create({ crateId })
-          .then(response => {
-            if (response.data.errors && response.data.errors.length > 0) {
-              this.props.messageShow(response.data.errors[0].message)
-            } else {
-              this.props.messageShow('Subscribed successfully.')
-              this.props.history.push(userRoutes.subscriptions.path)
-            }
-          })
-          .catch(error => {
-            this.props.messageShow('There was some error subscribing to this crate. Please try again.')
-          })
-          .then(() => {
-            this.setState({
-              isLoading: false
-            })
-
-            window.setTimeout(() => {
-              this.props.messageHide()
-            }, 5000)
-          })
-      } else {
       this.setState({
         isLoading: true
       })
-      this.props.history.push(userRoutes.styleSurvey.path)
+      this.props.create({ crateId })
+        .then(response => {
+          if (response.data.errors && response.data.errors.length > 0) {
+            this.props.messageShow(response.data.errors[0].message)
+          } else {
+            this.props.messageShow('Subscribed successfully.')
+            this.props.history.push(userRoutes.subscriptions.path)
+          }
+        })
+        .catch(error => {
+          this.props.messageShow('There was some error subscribing to this crate. Please try again.')
+        })
+        .then(() => {
+          this.setState({
+            isLoading: false
+          })
+
+          window.setTimeout(() => {
+            this.props.messageHide()
+          }, 5000)
+        })
+    } else {
+        this.props.history.push(userRoutes.styleSurvey.path)
     }
   }
 
