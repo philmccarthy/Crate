@@ -29,6 +29,14 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
+    /*
+    if (!user.survey) {
+      this.props.history.push(userRoutes.survey.path)
+      return
+    }
+
+    */
+
     this.setState({
       isLoading: true
     })
@@ -42,7 +50,9 @@ class Item extends PureComponent {
         } else {
           this.props.messageShow('Subscribed successfully.')
 
-          this.props.history.push(userRoutes.subscriptions.path)
+          // this.props.history.push(userRoutes.subscriptions.path)
+          this.props.history.push(userRoutes.styleSurvey.path)
+
         }
       })
       .catch(error => {
