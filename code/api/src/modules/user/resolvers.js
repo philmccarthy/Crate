@@ -81,8 +81,9 @@ export async function getGenders() {
 
 // Update style
 export async function update(parentValue, { id, style }, { auth }) {
-  if(auth.user) {
-    return await models.User.update(
+  const user = await models.User.findOne({ where: { id } })
+  if(user) {
+    return await user.update(
       {
         style
       },

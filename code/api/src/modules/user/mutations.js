@@ -41,11 +41,6 @@ export const userStyle = {
     }
   },
   resolve: update
-  // async (obj, { input: { id, style } }) => {
-  //   const user = await db.user.findById(id)
-  //   user.set('style', style)
-  //   return user.save()
-  // }
 }
 
 // Remove
