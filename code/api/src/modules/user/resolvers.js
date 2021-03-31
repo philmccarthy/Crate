@@ -47,7 +47,8 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        style: userDetails.style
       }
 
       return {
@@ -76,4 +77,19 @@ export async function remove(parentValue, { id }) {
 // User genders
 export async function getGenders() {
   return Object.values(params.user.gender)
+}
+
+// Update style
+export async function update(parentValue, { id, style }, { auth }) {
+  const user = await models.User.findOne({ where: { id } })
+  if(user) {
+    return await user.update(
+      {
+        style
+      },
+      {where: {id}}
+    )
+  } else {
+    throw new Error('Operation denied.')
+  }
 }
