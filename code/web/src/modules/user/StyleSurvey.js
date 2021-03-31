@@ -26,7 +26,15 @@ class StyleSurvey extends PureComponent {
       isLoading: false,
       result: '',
       //dummydata
-      choices: [1, 2, 3, 4]
+      choices: [1, 2, 3, 4],
+      surveyCounter: 0,
+      currentSelection: '',
+      selections: {
+        colonial: 0,
+        cosplay: 0,
+        prom: 0,
+        raver: 0
+      }
     }
   }
 
@@ -35,6 +43,8 @@ class StyleSurvey extends PureComponent {
   }
 
   render() {
+    // console.log(this.props)
+
     return (
       <>
       {/* Top title bar */}
@@ -68,6 +78,7 @@ class StyleSurvey extends PureComponent {
                           <Button
                             theme="primary"
                             // onClick={this.onClickSubscribe.bind(this, id)}
+                            // change current selection to name of the specific card
                             type="button"
                             disabled={ this.state.isLoading }
                           >
@@ -86,6 +97,7 @@ class StyleSurvey extends PureComponent {
           theme="primary"
           onClick={this.onClickSubmit.bind(this)}
           type="button"
+          // disabled prop dependent on currentSelection
         >Submit</Button>
       </>
     )
