@@ -46,7 +46,12 @@ class StyleSurvey extends PureComponent {
   }
 
   onClickSubmit = () => {
-    this.props.history.push(userRoutes.subscriptions.path)
+    if(this.state.surveyCounter > 5){
+      this.props.history.push(userRoutes.subscriptions.path)
+    } else {
+      this.setState(prevState => ({ selections: {...prevState.selections, [this.state.currentSelection]: (prevState.selections[this.state.currentSelection] + 1)}}))
+      this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1)}))
+    }
   }
 
   render() {
@@ -69,6 +74,7 @@ class StyleSurvey extends PureComponent {
             // this.state.isLoading
             //   ? <Loading/>
             //   :
+            this.state.surveyCounter <= 5 ? 
               questionSet.map((choice, index) => (
                 <div key={index} style={{ margin: '1em', float: 'left' }}>
                     <Card style={{ width: '18em', backgroundColor: white }}>
@@ -94,6 +100,7 @@ class StyleSurvey extends PureComponent {
                     </Card>
                   </div>
                 ))
+              : <p>Survey is fin</p>
           }
         </GridCell>
       </Grid>
