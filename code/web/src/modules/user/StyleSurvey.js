@@ -44,15 +44,12 @@ class StyleSurvey extends PureComponent {
     for(let style in this.state.selections) {
       scores.push([style, this.state.selections[style]])
     }
-    console.log(scores)
-    // const scores = Object.values(this.state.selections)
     const highestScore = scores.sort((a, b) => b[1] - a[1])
     const stylePref = highestScore[0][0] + (' and ') + highestScore[1][0]
     this.setState({ result : stylePref})
   }
 
   onSelection = (event) => {
-    console.log(event.target.name)
     this.setState({ currentSelection: event.target.name })
   }
 
@@ -112,17 +109,25 @@ class StyleSurvey extends PureComponent {
                     </Card>
                   </div>
                 ))
-              : <p>Your style is {this.state.result}</p>
+              : <>
+              <p>Your style is {this.state.result}</p>
+              <Button
+                theme="primary"
+                onClick={this.onClickSubmit.bind(this)}
+                type="button"
+                >Confirm Subscription</Button>
+              </>
           }
         </GridCell>
       </Grid>
-
+      {this.state.surveyCounter <= 5 &&
         <Button
           theme="primary"
           onClick={this.onClickSubmit.bind(this)}
           type="button"
-          // disabled prop dependent on currentSelection
-        >Submit</Button>
+        >Submit
+        </Button>
+      }
       </>
     )
   }
