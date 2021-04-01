@@ -16,7 +16,7 @@ import { H3 } from '../../ui/typography'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
-
+import { surveyData } from './styleSurveyData'
 
 class StyleSurvey extends PureComponent {
   constructor(props) {
@@ -26,15 +26,46 @@ class StyleSurvey extends PureComponent {
       isLoading: false,
       result: '',
       //dummydata
-      choices: [1, 2, 3, 4]
+      // choices: [1, 2, 3, 4],
+      surveyCounter: 1,
+      currentSelection: '',
+      selections: {
+        colonial: 0,
+        cosplay: 0,
+        prom: 0,
+        raver: 0
+      }
     }
+
+    this.onSelection = this.onSelection.bind(this)
+  }
+  determineResult = () => {
+    const scores = [];
+    for(let style in this.state.selections) {
+      scores.push([style, this.state.selections[style]])
+    }
+    const highestScore = scores.sort((a, b) => b[1] - a[1])
+    const stylePref = highestScore[0][0] + (' and ') + highestScore[1][0]
+    this.setState({ result : stylePref})
+  }
+
+  onSelection = (event) => {
+    this.setState({ currentSelection: event.target.name })
   }
 
   onClickSubmit = () => {
-    this.props.history.push(userRoutes.subscriptions.path)
+    if(this.state.surveyCounter > 5){
+      this.props.history.push(userRoutes.subscriptions.path)
+    } else {
+      this.setState(prevState => ({ selections: {...prevState.selections, [this.state.currentSelection]: (prevState.selections[this.state.currentSelection] + 1)}}))
+      this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1)}))
+      this.determineResult()
+    }
   }
 
   render() {
+    let questionSet = surveyData.men[`question${this.state.surveyCounter}`]
+
     return (
       <>
       {/* Top title bar */}
@@ -42,7 +73,7 @@ class StyleSurvey extends PureComponent {
         <GridCell style={{ padding: '2em', textAlign: 'center' }}>
           <H3 font="secondary">Style Survey!</H3>
 
-          <p style={{ marginTop: '1em', color: grey2 }}>Let's find your style profile!</p>
+          <p style={{ marginTop: '1em', color: grey2 }}>Choose your favorite style below!</p>
         </GridCell>
       </Grid>
 
@@ -52,22 +83,22 @@ class StyleSurvey extends PureComponent {
             // this.state.isLoading
             //   ? <Loading/>
             //   :
-              this.state.choices.map((choice, index) => (
-                <div key={index} style={{ margin: '2em', float: 'left' }}>
+            this.state.surveyCounter <= 5 ? 
+              questionSet.map((choice, index) => (
+                <div key={index} style={{ margin: '1em', float: 'left' }}>
                     <Card style={{ width: '18em', backgroundColor: white }}>
-                      <p style={{ padding: '2em 3em 0 3em' }}>
-                        Image goes here
-                      </p>
-
+                      <div style={{ width: '100%', textAlign: 'center' }}>
+                      <img src={choice.src} alt={choice.alt} style={{ width: '80%', alignSelf: 'center' }}/>
+                      </div>
+                      
                       <div style={{ padding: '1em 1.2em' }}>
-                        <H4 font="secondary" style={{ color: black }}>{choice}</H4>
-
-                        <p style={{ color: grey2, marginTop: '1em' }}>Style Name</p>
-
+                    
                         <p style={{ textAlign: 'center', marginTop: '1.5em', marginBottom: '1em' }}>
                           <Button
                             theme="primary"
-                            // onClick={this.onClickSubscribe.bind(this, id)}
+                            name={choice.style}
+                            onClick={() => this.onSelection(event)}
+                            // change current selection to name of the specific card
                             type="button"
                             disabled={ this.state.isLoading }
                           >
@@ -78,15 +109,25 @@ class StyleSurvey extends PureComponent {
                     </Card>
                   </div>
                 ))
+              : <>
+              <p>Your style is {this.state.result}</p>
+              <Button
+                theme="primary"
+                onClick={this.onClickSubmit.bind(this)}
+                type="button"
+                >Confirm Subscription</Button>
+              </>
           }
         </GridCell>
       </Grid>
-
+      {this.state.surveyCounter <= 5 &&
         <Button
           theme="primary"
           onClick={this.onClickSubmit.bind(this)}
           type="button"
-        >Submit</Button>
+        >Submit
+        </Button>
+      }
       </>
     )
   }
