@@ -39,6 +39,17 @@ class StyleSurvey extends PureComponent {
 
     this.onSelection = this.onSelection.bind(this)
   }
+  determineResult = () => {
+    const scores = [];
+    for(let style in this.state.selections) {
+      scores.push([style, this.state.selections[style]])
+    }
+    console.log(scores)
+    // const scores = Object.values(this.state.selections)
+    const highestScore = scores.sort((a, b) => b[1] - a[1])
+    const stylePref = highestScore[0][0] + (' and ') + highestScore[1][0]
+    this.setState({ result : stylePref})
+  }
 
   onSelection = (event) => {
     console.log(event.target.name)
@@ -51,6 +62,7 @@ class StyleSurvey extends PureComponent {
     } else {
       this.setState(prevState => ({ selections: {...prevState.selections, [this.state.currentSelection]: (prevState.selections[this.state.currentSelection] + 1)}}))
       this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1)}))
+      this.determineResult()
     }
   }
 
@@ -100,7 +112,7 @@ class StyleSurvey extends PureComponent {
                     </Card>
                   </div>
                 ))
-              : <p>Survey is fin</p>
+              : <p>Your style is {this.state.result}</p>
           }
         </GridCell>
       </Grid>
