@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
@@ -151,6 +150,11 @@ class StyleSurvey extends Component {
       </>
     )
   }
+}
+
+StyleSurvey.propTypes = {
+  user: PropTypes.object.isRequired,
+  setUserStyle: PropTypes.func.isRequired
 }
 
 //Component State
