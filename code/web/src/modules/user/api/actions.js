@@ -11,6 +11,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const ADD_USER_STYLE = 'AUTH/ADD_USER_STYLE'
 
 // Actions
 
@@ -36,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role, style}', 'token']
+      fields: ['user {id, name, email, role, style}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -46,7 +47,6 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-
           dispatch(setUser(token, user))
 
           loginSetUserLocalStorageAndCookie(token, user)
@@ -115,5 +115,21 @@ export function getGenders() {
       operation: 'userGenders',
       fields: ['id', 'name']
     }))
+  }
+}
+
+export function setUserStyle(userDetails) {
+  return dispatch => {
+    dispatch({
+      type: ADD_USER_STYLE,
+      user: userDetails.style
+    })
+    
+    return axios.post(routeApi, mutation({
+      operation: 'userStyle',
+      variables: userDetails,
+      fields: ['id', 'style']
+    }))
+    
   }
 }

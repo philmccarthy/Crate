@@ -29,30 +29,15 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
-    /*
-    if (!user.survey) {
-      this.props.history.push(userRoutes.survey.path)
-      return
-    }
-
-    */
-
     this.setState({
       isLoading: true
     })
-
-    this.props.messageShow('Subscribing, please wait...')
-
     this.props.create({ crateId })
       .then(response => {
         if (response.data.errors && response.data.errors.length > 0) {
           this.props.messageShow(response.data.errors[0].message)
         } else {
           this.props.messageShow('Subscribed successfully.')
-
-          // this.props.history.push(userRoutes.subscriptions.path)
-          this.props.history.push(userRoutes.styleSurvey.path)
-
         }
       })
       .catch(error => {
@@ -67,6 +52,15 @@ class Item extends PureComponent {
           this.props.messageHide()
         }, 5000)
       })
+    if (this.props.user.details.style !== null) {
+      this.props.history.push(userRoutes.subscriptions.path)
+    } else {
+      this.props.history.push(userRoutes.styleSurvey.path)
+      this.props.history.push({
+        pathname: userRoutes.styleSurvey.path,
+        state: { gender: crateId % 2 === 0 ? 'Women' : 'Men' }
+      })
+    }
   }
 
   render() {
