@@ -29,7 +29,6 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
-    console.log()
     this.setState({
       isLoading: true
     })
@@ -66,7 +65,6 @@ class Item extends PureComponent {
 
   render() {
     const { id, name, description } = this.props.crate
-    console.log(this.props.crate, 'CRATES')
     const { isLoading } = this.state
 
     return (
