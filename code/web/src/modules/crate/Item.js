@@ -29,38 +29,44 @@ class Item extends PureComponent {
   }
 
   onClickSubscribe = (crateId) => {
-    if (this.props.user.details.style !== null) {
-      this.setState({
-        isLoading: true
+    console.log()
+    this.setState({
+      isLoading: true
+    })
+    this.props.create({ crateId })
+      .then(response => {
+        if (response.data.errors && response.data.errors.length > 0) {
+          this.props.messageShow(response.data.errors[0].message)
+        } else {
+          this.props.messageShow('Subscribed successfully.')
+        }
       })
-      this.props.create({ crateId })
-        .then(response => {
-          if (response.data.errors && response.data.errors.length > 0) {
-            this.props.messageShow(response.data.errors[0].message)
-          } else {
-            this.props.messageShow('Subscribed successfully.')
-            this.props.history.push(userRoutes.subscriptions.path)
-          }
+      .catch(error => {
+        this.props.messageShow('There was some error subscribing to this crate. Please try again.')
+      })
+      .then(() => {
+        this.setState({
+          isLoading: false
         })
-        .catch(error => {
-          this.props.messageShow('There was some error subscribing to this crate. Please try again.')
-        })
-        .then(() => {
-          this.setState({
-            isLoading: false
-          })
 
-          window.setTimeout(() => {
-            this.props.messageHide()
-          }, 5000)
-        })
+        window.setTimeout(() => {
+          this.props.messageHide()
+        }, 5000)
+      })
+    if (this.props.user.details.style !== null) {
+      this.props.history.push(userRoutes.subscriptions.path)
     } else {
-        this.props.history.push(userRoutes.styleSurvey.path)
+      this.props.history.push(userRoutes.styleSurvey.path)
+      this.props.history.push({
+        pathname: userRoutes.styleSurvey.path,
+        state: { gender: crateId % 2 === 0 ? 'Women' : 'Men' }
+      })
     }
   }
 
   render() {
     const { id, name, description } = this.props.crate
+    console.log(this.props.crate, 'CRATES')
     const { isLoading } = this.state
 
     return (

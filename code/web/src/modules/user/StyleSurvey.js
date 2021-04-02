@@ -27,8 +27,6 @@ class StyleSurvey extends Component {
     this.state = {
       isLoading: false,
       result: '',
-      //dummydata
-      // choices: [1, 2, 3, 4],
       surveyCounter: 1,
       currentSelection: '',
       selections: {
@@ -66,16 +64,23 @@ class StyleSurvey extends Component {
   }
 
   onClickConfirmSubscription = () => {
-    console.log('ran', this.props.user, this.state.result)
     const newUserDetails = {
       'id': this.props.user.details.id,
       'style': this.state.result
     }
     setUserStyle(newUserDetails)
+    this.props.history.push(userRoutes.subscriptions.path)
+  }
+
+  componentDidMount() {
+    console.log(this.props, 'PROPS')
+    console.log(this.state, 'STATE')
   }
 
   render() {
-    let questionSet = surveyData.men[`question${this.state.surveyCounter}`]
+    const mensQuestionSet = surveyData.men[`question${this.state.surveyCounter}`]
+    const womensQuestionSet = surveyData.women[`question${this.state.surveyCounter}`]
+    const selectedSet = this.props.location.state.gender === 'Men' ? mensQuestionSet : womensQuestionSet
 
     return (
       <>
@@ -95,7 +100,7 @@ class StyleSurvey extends Component {
             //   ? <Loading/>
             //   :
             this.state.surveyCounter <= 5 ?
-              questionSet.map((choice, index) => (
+              selectedSet.map((choice, index) => (
                 <div key={index} style={{ margin: '1em', float: 'left' }}>
                     <Card style={{ width: '18em', backgroundColor: white }}>
                       <div style={{ width: '100%', textAlign: 'center' }}>
