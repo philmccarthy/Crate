@@ -140,12 +140,14 @@ class StyleSurvey extends Component {
         </GridCell>
       </Grid>
       {this.state.surveyCounter <= 5 &&
-        <Button
-          theme="primary"
-          onClick={() => this.onClickSubmit()}
-          type="button"
-        >Submit
-        </Button>
+        <p style={{ textAlign: 'center', margin: '2em' }}>
+          <Button
+            theme="primary"
+            onClick={() => this.onClickSubmit()}
+            type="button"
+          >Submit
+          </Button>
+        </p>
       }
       </>
     )
