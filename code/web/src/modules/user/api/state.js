@@ -12,16 +12,15 @@ export const userInitialState = {
 
 // State
 export default (state = userInitialState, action) => {
-  console.log(action)
   switch (action.type) {
-    case 'ADD_USER_STYLE':
-      console.log('user style added')
+    case ADD_USER_STYLE:
       return {
         ...state,
         details: {
           ...state.details,
-          style: action.user.style
-        }
+          style: action.user
+        },
+        isLoading: false
       }
 
     case SET_USER:

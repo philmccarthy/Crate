@@ -38,6 +38,7 @@ class StyleSurvey extends Component {
     }
     this.onClickConfirmSubscription = this.onClickConfirmSubscription.bind(this)
     this.onSelection = this.onSelection.bind(this)
+    this.onClickSubmit = this.onClickSubmit.bind(this)
   }
   determineResult = () => {
     const scores = [];
@@ -54,21 +55,21 @@ class StyleSurvey extends Component {
   }
 
   onClickSubmit = () => {
-    if(this.state.surveyCounter > 5){
-      this.props.history.push(userRoutes.subscriptions.path)
-    } else {
+    // if(this.state.surveyCounter > 5) {
+    //   this.props.history.push(userRoutes.subscriptions.path)
+    // } else {
       this.setState(prevState => ({ selections: {...prevState.selections, [this.state.currentSelection]: (prevState.selections[this.state.currentSelection] + 1)}}))
       this.setState(prevState => ({surveyCounter: (prevState.surveyCounter + 1), currentSelection: '' }))
       this.determineResult()
     }
-  }
+  // }
 
   onClickConfirmSubscription = () => {
     const newUserDetails = {
-      'id': this.props.user.details.id,
-      'style': this.state.result
+      id: this.props.user.details.id,
+      style: this.state.result
     }
-    setUserStyle(newUserDetails)
+    this.props.setUserStyle(newUserDetails)
     this.props.history.push(userRoutes.subscriptions.path)
   }
 
@@ -103,7 +104,7 @@ class StyleSurvey extends Component {
               selectedSet.map((choice, index) => (
                 <div key={index} style={{ margin: '1em', float: 'left' }}>
                     <Card style={{ width: '18em', backgroundColor: white }}>
-                      <div style={{ width: '100%', textAlign: 'center' }}>
+                      <div style={{ width: '100%', height: '40vh',textAlign: 'center', overflow: 'hidden' }}>
                       <img src={choice.src} alt={choice.alt} style={{ width: '80%', alignSelf: 'center' }}/>
                       </div>
 
@@ -139,7 +140,7 @@ class StyleSurvey extends Component {
       {this.state.surveyCounter <= 5 &&
         <Button
           theme="primary"
-          onClick={this.onClickSubmit.bind(this)}
+          onClick={() => this.onClickSubmit()}
           type="button"
         >Submit
         </Button>

@@ -119,16 +119,17 @@ export function getGenders() {
 }
 
 export function setUserStyle(userDetails) {
-  dispatch => {
+  return dispatch => {
     dispatch({
-      type: 'ADD_USER_STYLE',
-      user: userDetails
+      type: ADD_USER_STYLE,
+      user: userDetails.style
     })
+    
+    return axios.post(routeApi, mutation({
+      operation: 'userStyle',
+      variables: userDetails,
+      fields: ['id', 'style']
+    }))
+    
   }
-  return axios.post(routeApi, mutation({
-    operation: 'userStyle',
-    variables: userDetails,
-    fields: ['id', 'style']
-  }))
-
 }
