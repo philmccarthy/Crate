@@ -127,12 +127,15 @@ class StyleSurvey extends Component {
                   </div>
                 ))
               : <>
-              <p>Your style is {this.state.result}</p>
-              <Button
+              <H4 font="secondary" style={{ color: black, textAlign: 'center', margin: '2em' }}>Your style is {this.state.result}</H4>
+              {/* <p>Your style is {this.state.result}</p> */}
+              <p style={{ textAlign: 'center', margin: '2em' }}>
+                <Button
                 theme="primary"
-                onClick={this.onClickConfirmSubscription}
+                onClick={() => this.onClickConfirmSubscription()}
                 type="button"
                 >Confirm Subscription</Button>
+                </p>
               </>
           }
         </GridCell>

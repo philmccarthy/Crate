@@ -47,18 +47,18 @@ export const surveyData = {
     question3: [
       {src: '../images/surveyImages/womens/headgear-80s-w.jpeg', alt: 'Extremely high pony tail held up by multiple scrunchies', style: 'prom'},
       {src: '../images/surveyImages/womens/headgear-colonial-w.jpeg', alt: 'A colonial style bonnet', style: 'colonial'},
-      {src: '../images/surveyImages/womens/headgear-cosplay-w.jpg', alt: 'Princess Lea buns', style: 'cosplay'},
+      {src: '../images/surveyImages/womens/headgear-cosplay-w.jpeg', alt: 'Princess Lea buns', style: 'cosplay'},
       {src: '../images/surveyImages/womens/headgear-raver-w.jpeg', alt: 'Colorful rainbow pigtail extensions', style: 'raver'}
     ],
     question4: [
       {src: '../images/surveyImages/womens/hand-80s-w.jpeg', alt: 'Lace fingerless gloves', style: 'prom'},
-      {src: '../images/surveyImages/womens/hand-colonial-w.png', alt: 'Fur hand-warming muff', style: 'colonial'},
-      {src: '../images/surveyImages/womens/hand-cosplay-w.jpg', alt: 'Woman in a jedi costume holding a light-saber', style: 'cosplay'},
+      {src: '../images/surveyImages/womens/hand-colonial-w.jpeg', alt: 'Fur hand-warming muff', style: 'colonial'},
+      {src: '../images/surveyImages/womens/hand-cosplay-w.jpeg', alt: 'Woman in a jedi costume holding a light-saber', style: 'cosplay'},
       {src: '../images/surveyImages/womens/hand-raver-w.jpeg', alt: 'A wrist full of plastic beaded bracelets', style: 'raver'}
     ],
     question5: [
       {src: '../images/surveyImages/womens/fulloutfit-80s-w.jpeg', alt: 'Shiny gold ruffly dress', style: 'prom'},
-      {src: '../images/surveyImages/womens/fulloutfit-colonial-w.jpg', alt: 'Colonial era dress', style: 'colonial'},
+      {src: '../images/surveyImages/womens/fulloutfit-colonial-w.jpeg', alt: 'Colonial era dress', style: 'colonial'},
       {src: '../images/surveyImages/womens/fulloutfit-cosplay-w.png', alt: 'Woman dressed as Maleficent', style: 'cosplay'},
       {src: '../images/surveyImages/womens/fulloutfit-raver-w.jpeg', alt: 'Girl with lots of plastic bracelets and pajama bottoms', style: 'raver'}
     ]
