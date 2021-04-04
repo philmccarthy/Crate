@@ -11,7 +11,7 @@ export const userInitialState = {
 }
 
 // State
-export default (state = userInitialState, action) => {
+export const user = (state = userInitialState, action) => {
   switch (action.type) {
     case ADD_USER_STYLE:
       return {
